@@ -29,6 +29,24 @@ func MEmpty() List {
     return lst
 }
 
+func (x List) MConcat(y List) List {
+    if x.head == nil {
+        return y
+    }
+    if y.head == nil {
+        return x
+    }
+    rx := revert(x)
+    res := List{head: y.head}
+    for t := rx.head; t != nil; t = t.next {
+        res.head = &elem{
+            value: t.value,
+            next: res.head,
+        }
+    }
+    return res
+}
+
 func (x List) Add(s string) List {
     return List{
         head: &elem {

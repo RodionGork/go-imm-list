@@ -99,6 +99,14 @@ func TestReduce(t *testing.T) {
     }
 }
 
+func TestMConcant(t *testing.T) {
+    x := list.FromSlice([]string{"ax", "bx"})
+    y := list.FromSlice([]string{"cs", "ds"})
+    if notEquals(x.MConcat(y).ToSlice(), []string{"ax", "bx", "cs", "ds"}) {
+        t.Error("MConcat fails")
+    }
+}
+
 func TestToString(t *testing.T) {
     if list.MEmpty().String() != "[]" {
         t.Error("Empty list to string conversion failed")
